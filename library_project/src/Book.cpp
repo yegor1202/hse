@@ -1,37 +1,43 @@
 #include "Book.h"
 #include <stdexcept>
+#include <ctime>
 
-Book::Book(const std::string& title, const std::string& author, 
-           int year, const std::string& isbn)
+using namespace std;
+
+Book::Book(const string& title, const string& author, 
+           int year, const string& isbn)
     : title(title), author(author), year(year), isbn(isbn),
       isAvailable(true), borrowedBy("") {
     
     if (title.empty() || author.empty() || isbn.empty()) {
-        throw std::invalid_argument("Название, автор и ISBN не могут быть пустыми");
+        throw invalid_argument("Название, автор и ISBN не могут быть пустыми");
     }
     
     if (!isValidYear(year)) {
-        throw std::invalid_argument("Год издания должен быть между 1450 и текущим годом");
+        throw invalid_argument("Год издания должен быть между 1450 и текущим годом");
     }
 }
 
 bool Book::isValidYear(int year) const {
-    return year >= 1450 && year <= 2025;
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+    int currentYear = now->tm_year + 1900;
+    return year >= 1450 && year <= currentYear;
 }
 
-std::string Book::getTitle() const { return title; }
-std::string Book::getAuthor() const { return author; }
+string Book::getTitle() const { return title; }
+string Book::getAuthor() const { return author; }
 int Book::getYear() const { return year; }
-std::string Book::getISBN() const { return isbn; }
+string Book::getISBN() const { return isbn; }
 bool Book::getIsAvailable() const { return isAvailable; }
-std::string Book::getBorrowedBy() const { return borrowedBy; }
+string Book::getBorrowedBy() const { return borrowedBy; }
 
-void Book::borrowBook(const std::string& userName) {
+void Book::borrowBook(const string& userName) {
     if (!isAvailable) {
-        throw std::runtime_error("Книга уже выдана пользователю: " + borrowedBy);
+        throw runtime_error("Книга уже выдана пользователю: " + borrowedBy);
     }
     if (userName.empty()) {
-        throw std::invalid_argument("Имя пользователя не может быть пустым");
+        throw invalid_argument("Имя пользователя не может быть пустым");
     }
     
     isAvailable = false;
@@ -40,7 +46,7 @@ void Book::borrowBook(const std::string& userName) {
 
 void Book::returnBook() {
     if (isAvailable) {
-        throw std::runtime_error("Книга доступна для выдачи");
+        throw runtime_error("Книга уже доступна для выдачи");
     }
     
     isAvailable = true;
@@ -48,17 +54,17 @@ void Book::returnBook() {
 }
 
 void Book::displayInfo() const {
-    std::cout << "Название: " << title << "\n"
-              << "Автор: " << author << "\n"
-              << "Год издания: " << year << "\n"
-              << "ISBN: " << isbn << "\n"
-              << "Статус: " << (isAvailable ? "Доступна" : "Выдана пользователю: " + borrowedBy) 
-              << "\n\n";
+    cout << "Название: " << title << "\n"
+         << "Автор: " << author << "\n"
+         << "Год издания: " << year << "\n"
+         << "ISBN: " << isbn << "\n"
+         << "Статус: " << (isAvailable ? "Доступна" : "Выдана пользователю: " + borrowedBy) 
+         << "\n\n";
 }
 
-std::string Book::toFileString() const {
+string Book::toFileString() const {
     return "BOOK\nTitle: " + title + "\nAuthor: " + author + 
-           "\nYear: " + std::to_string(year) + "\nISBN: " + isbn + 
+           "\nYear: " + to_string(year) + "\nISBN: " + isbn + 
            "\nAvailable: " + (isAvailable ? "yes" : "no") + 
            "\nBorrowedBy: " + borrowedBy + "\n";
 }

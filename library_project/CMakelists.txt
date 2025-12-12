@@ -10,5 +10,5 @@ add_executable(library
     src/Library.cpp
     src/User.cpp
 )
-
+target_compile_options(library PRIVATE "-fexec-charset=CP1251")
 include_directories(src)

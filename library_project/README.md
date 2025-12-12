@@ -7,3 +7,5 @@
     cmake ..
     cmake --build .
 4) После этого в build -> Debug появится library.exe, запускаем. Готово!
+
+(Чтобы символы русского алфавита отображались корректно, в редакторе кода измените кодировку на windows 1251, для этого в visual studio code нажмите на кодировку -> Reopen with Encoding -> Windows 1251 или Cyrrilic Windows 1251)

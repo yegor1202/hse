@@ -17,24 +17,24 @@ void clearInput() {
 }
 
 void displayMenu() {
-    cout << "\n=== Ð‘Ð˜Ð‘Ð›Ð˜ÐžÐ¢Ð•ÐšÐ ===" << endl;
-    cout << "1. ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ð²ÑÐµ ÐºÐ½Ð¸Ð³Ð¸" << endl;
-    cout << "2. ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹" << endl;
-    cout << "3. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð½Ð¾Ð²ÑƒÑŽ ÐºÐ½Ð¸Ð³Ñƒ" << endl;
-    cout << "4. Ð—Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ" << endl;
-    cout << "5. Ð’Ñ‹Ð´Ð°Ñ‚ÑŒ ÐºÐ½Ð¸Ð³Ñƒ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŽ" << endl;
-    cout << "6. ÐŸÑ€Ð¸Ð½ÑÑ‚ÑŒ ÐºÐ½Ð¸Ð³Ñƒ Ð¾Ñ‚ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ" << endl;
-    cout << "7. ÐŸÐ¾Ð¸ÑÐº ÐºÐ½Ð¸Ð³Ð¸ Ð¿Ð¾ ISBN" << endl;
-    cout << "8. ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»ÑŒ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ" << endl;
-    cout << "9. Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð² Ñ„Ð°Ð¹Ð»" << endl;
-    cout << "10. Ð’Ñ‹Ñ…Ð¾Ð´" << endl;
-    cout << "Ð’Ð°Ñˆ Ð²Ñ‹Ð±Ð¾Ñ€: ";
+    cout << "\n=== ÁÈÁËÈÎÒÅÊÀ ===" << endl;
+    cout << "1. Ïðîñìîòðåòü âñå êíèãè" << endl;
+    cout << "2. Ïðîñìîòðåòü âñåõ ïîëüçîâàòåëåé" << endl;
+    cout << "3. Äîáàâèòü íîâóþ êíèãó" << endl;
+    cout << "4. Çàðåãèñòðèðîâàòü ïîëüçîâàòåëÿ" << endl;
+    cout << "5. Âûäàòü êíèãó ïîëüçîâàòåëþ" << endl;
+    cout << "6. Ïðèíÿòü êíèãó îò ïîëüçîâàòåëÿ" << endl;
+    cout << "7. Ïîèñê êíèãè ïî ISBN" << endl;
+    cout << "8. Ïðîñìîòðåòü ïðîôèëü ïîëüçîâàòåëÿ" << endl;
+    cout << "9. Ñîõðàíèòü äàííûå â ôàéë" << endl;
+    cout << "10. Âûõîä" << endl;
+    cout << "Âàø âûáîð: ";
 }
 
 int getChoice() {
     int choice;
     while (!(cin >> choice) || choice < 1 || choice > 10) {
-        cout << "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´. Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð¾Ñ‚ 1 Ð´Ð¾ 10: ";
+        cout << "Íåêîððåêòíûé ââîä. Ââåäèòå ÷èñëî îò 1 äî 10: ";
         clearInput();
     }
     clearInput();
@@ -45,111 +45,111 @@ void addBookMenu(Library& library) {
     string title, author, isbn;
     int year;
     
-    cout << "=== Ð”ÐžÐ‘ÐÐ’Ð›Ð•ÐÐ˜Ð• ÐÐžÐ’ÐžÐ™ ÐšÐÐ˜Ð“Ð˜ ===" << endl;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ: ";
+    cout << "=== ÄÎÁÀÂËÅÍÈÅ ÍÎÂÎÉ ÊÍÈÃÈ ===" << endl;
+    cout << "Ââåäèòå íàçâàíèå: ";
     getline(cin, title);
     
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð°: ";
+    cout << "Ââåäèòå àâòîðà: ";
     getline(cin, author);
     
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ð¾Ð´ Ð¸Ð·Ð´Ð°Ð½Ð¸Ñ: ";
+    cout << "Ââåäèòå ãîä èçäàíèÿ: ";
     while (!(cin >> year)) {
-        cout << "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð³Ð¾Ð´. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°: ";
+        cout << "Íåêîððåêòíûé ãîä. Ïîïðîáóéòå ñíîâà: ";
         clearInput();
     }
     clearInput();
     
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ISBN: ";
+    cout << "Ââåäèòå ISBN: ";
     getline(cin, isbn);
     
     try {
         Book newBook(title, author, year, isbn);
         library.addBook(newBook);
-        cout << "ÐšÐ½Ð¸Ð³Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð°!" << endl;
+        cout << "Êíèãà óñïåøíî äîáàâëåíà!" << endl;
     } catch (const exception& e) {
-        cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: " << e.what() << endl;
+        cout << "Îøèáêà: " << e.what() << endl;
     }
 }
 
 void addUserMenu(Library& library) {
     string name, userId;
     
-    cout << "=== Ð Ð•Ð“Ð˜Ð¡Ð¢Ð ÐÐ¦Ð˜Ð¯ ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð¯ ===" << endl;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ: ";
+    cout << "=== ÐÅÃÈÑÒÐÀÖÈß ÏÎËÜÇÎÂÀÒÅËß ===" << endl;
+    cout << "Ââåäèòå ôàìèëèþ ïîëüçîâàòåëÿ: ";
     getline(cin, name);
     
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ID Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ (Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚ USR_001): ";
+    cout << "Ââåäèòå ID ïîëüçîâàòåëÿ (ôîðìàò USR_001): ";
     getline(cin, userId);
     
     try {
         User newUser(name, userId);
         library.addUser(newUser);
-        cout << "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð¾Ð²Ð°Ð½!" << endl;
+        cout << "Ïîëüçîâàòåëü óñïåøíî çàðåãèñòðèðîâàí!" << endl;
     } catch (const exception& e) {
-        cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: " << e.what() << endl;
+        cout << "Îøèáêà: " << e.what() << endl;
     }
 }
 
 void borrowBookMenu(Library& library) {
     string userName, isbn;
     
-    cout << "=== Ð’Ð«Ð”ÐÐ§Ð ÐšÐÐ˜Ð“Ð˜ ===" << endl;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ: ";
+    cout << "=== ÂÛÄÀ×À ÊÍÈÃÈ ===" << endl;
+    cout << "Ââåäèòå ôàìèëèþ ïîëüçîâàòåëÿ: ";
     getline(cin, userName);
     
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ISBN ÐºÐ½Ð¸Ð³Ð¸: ";
+    cout << "Ââåäèòå ISBN êíèãè: ";
     getline(cin, isbn);
     
     try {
         library.borrowBook(userName, isbn);
-        cout << "ÐšÐ½Ð¸Ð³Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð²Ñ‹Ð´Ð°Ð½Ð°!" << endl;
+        cout << "Êíèãà óñïåøíî âûäàíà!" << endl;
     } catch (const exception& e) {
-        cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: " << e.what() << endl;
+        cout << "Îøèáêà: " << e.what() << endl;
     }
 }
 
 void returnBookMenu(Library& library) {
     string isbn;
     
-    cout << "=== Ð’ÐžÐ—Ð’Ð ÐÐ¢ ÐšÐÐ˜Ð“Ð˜ ===" << endl;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ISBN ÐºÐ½Ð¸Ð³Ð¸: ";
+    cout << "=== ÂÎÇÂÐÀÒ ÊÍÈÃÈ ===" << endl;
+    cout << "Ââåäèòå ISBN êíèãè: ";
     getline(cin, isbn);
     
     try {
         library.returnBook(isbn);
-        cout << "ÐšÐ½Ð¸Ð³Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰ÐµÐ½Ð°!" << endl;
+        cout << "Êíèãà óñïåøíî âîçâðàùåíà!" << endl;
     } catch (const exception& e) {
-        cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: " << e.what() << endl;
+        cout << "Îøèáêà: " << e.what() << endl;
     }
 }
 
 void searchBookMenu(Library& library) {
     string isbn;
     
-    cout << "=== ÐŸÐžÐ˜Ð¡Ðš ÐšÐÐ˜Ð“Ð˜ ÐŸÐž ISBN ===" << endl;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ISBN: ";
+    cout << "=== ÏÎÈÑÊ ÊÍÈÃÈ ÏÎ ISBN ===" << endl;
+    cout << "Ââåäèòå ISBN: ";
     getline(cin, isbn);
     
     Book* book = library.findBookByISBN(isbn);
     if (book != nullptr) {
         book->displayInfo();
     } else {
-        cout << "ÐšÐ½Ð¸Ð³Ð° Ñ ISBN " << isbn << " Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°." << endl;
+        cout << "Êíèãà ñ ISBN " << isbn << " íå íàéäåíà." << endl;
     }
 }
 
 void viewUserProfileMenu(Library& library) {
     string name;
     
-    cout << "=== ÐŸÐ ÐžÐ¡ÐœÐžÐ¢Ð  ÐŸÐ ÐžÐ¤Ð˜Ð›Ð¯ ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð¯ ===" << endl;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ: ";
+    cout << "=== ÏÐÎÑÌÎÒÐ ÏÐÎÔÈËß ÏÎËÜÇÎÂÀÒÅËß ===" << endl;
+    cout << "Ââåäèòå ôàìèëèþ ïîëüçîâàòåëÿ: ";
     getline(cin, name);
     
     User* user = library.findUserByName(name);
     if (user != nullptr) {
         user->displayProfile();
     } else {
-        cout << "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ " << name << " Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½." << endl;
+        cout << "Ïîëüçîâàòåëü " << name << " íå íàéäåí." << endl;
     }
 }
 
@@ -164,7 +164,7 @@ int main() {
     
     Library library;
     
-    cout << "Ð”Ð¾Ð±Ñ€Ð¾ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒ Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ñƒ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ¾Ð¹!" << endl;
+    cout << "Äîáðî ïîæàëîâàòü â ñèñòåìó óïðàâëåíèÿ áèáëèîòåêîé!" << endl;
     
     bool running = true;
     while (running) {
@@ -201,21 +201,21 @@ int main() {
                     library.saveToFile();
                     break;
                 case 10:
-                    cout << "Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¸ Ð²Ñ‹Ñ…Ð¾Ð´..." << endl;
+                    cout << "Ñîõðàíåíèå äàííûõ è âûõîä..." << endl;
                     library.saveToFile();
                     running = false;
                     break;
             }
         } catch (const exception& e) {
-            cout << "ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ°: " << e.what() << endl;
+            cout << "Ïðîèçîøëà îøèáêà: " << e.what() << endl;
         }
         
         if (running && choice != 10) {
-            cout << "\nÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Enter Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶ÐµÐ½Ð¸Ñ...";
+            cout << "\nÍàæìèòå Enter äëÿ ïðîäîëæåíèÿ...";
             cin.get();
         }
     }
     
-    cout << "Ð”Ð¾ ÑÐ²Ð¸Ð´Ð°Ð½Ð¸Ñ!" << endl;
+    cout << "Äî ñâèäàíèÿ!" << endl;
     return 0;
 }

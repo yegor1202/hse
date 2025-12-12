@@ -1,6 +1,5 @@
 #include "Book.h"
 #include <stdexcept>
-#include <ctime>
 
 using namespace std;
 
@@ -10,19 +9,16 @@ Book::Book(const string& title, const string& author,
       isAvailable(true), borrowedBy("") {
     
     if (title.empty() || author.empty() || isbn.empty()) {
-        throw invalid_argument("ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ, Ð°Ð²Ñ‚Ð¾Ñ€ Ð¸ ISBN Ð½Ðµ Ð¼Ð¾Ð³ÑƒÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¿ÑƒÑÑ‚Ñ‹Ð¼Ð¸");
+        throw invalid_argument("Íàçâàíèå, àâòîð è ISBN íå ìîãóò áûòü ïóñòûìè");
     }
     
     if (!isValidYear(year)) {
-        throw invalid_argument("Ð“Ð¾Ð´ Ð¸Ð·Ð´Ð°Ð½Ð¸Ñ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±Ñ‹Ñ‚ÑŒ Ð¼ÐµÐ¶Ð´Ñƒ 1450 Ð¸ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¼ Ð³Ð¾Ð´Ð¾Ð¼");
+        throw invalid_argument("Ãîä èçäàíèÿ äîëæåí áûòü ìåæäó 1450 è òåêóùèì ãîäîì");
     }
 }
 
 bool Book::isValidYear(int year) const {
-    time_t t = time(nullptr);
-    tm* now = localtime(&t);
-    int currentYear = now->tm_year + 1900;
-    return year >= 1450 && year <= currentYear;
+    return year >= 1450 && year <= 2025;
 }
 
 string Book::getTitle() const { return title; }
@@ -34,10 +30,10 @@ string Book::getBorrowedBy() const { return borrowedBy; }
 
 void Book::borrowBook(const string& userName) {
     if (!isAvailable) {
-        throw runtime_error("ÐšÐ½Ð¸Ð³Ð° ÑƒÐ¶Ðµ Ð²Ñ‹Ð´Ð°Ð½Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŽ: " + borrowedBy);
+        throw runtime_error("Êíèãà óæå âûäàíà ïîëüçîâàòåëþ: " + borrowedBy);
     }
     if (userName.empty()) {
-        throw invalid_argument("Ð˜Ð¼Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¿ÑƒÑÑ‚Ñ‹Ð¼");
+        throw invalid_argument("Èìÿ ïîëüçîâàòåëÿ íå ìîæåò áûòü ïóñòûì");
     }
     
     isAvailable = false;
@@ -46,7 +42,7 @@ void Book::borrowBook(const string& userName) {
 
 void Book::returnBook() {
     if (isAvailable) {
-        throw runtime_error("ÐšÐ½Ð¸Ð³Ð° ÑƒÐ¶Ðµ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð° Ð´Ð»Ñ Ð²Ñ‹Ð´Ð°Ñ‡Ð¸");
+        throw runtime_error("Êíèãà óæå äîñòóïíà äëÿ âûäà÷è");
     }
     
     isAvailable = true;
@@ -54,11 +50,11 @@ void Book::returnBook() {
 }
 
 void Book::displayInfo() const {
-    cout << "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ: " << title << "\n"
-         << "ÐÐ²Ñ‚Ð¾Ñ€: " << author << "\n"
-         << "Ð“Ð¾Ð´ Ð¸Ð·Ð´Ð°Ð½Ð¸Ñ: " << year << "\n"
+    cout << "Íàçâàíèå: " << title << "\n"
+         << "Àâòîð: " << author << "\n"
+         << "Ãîä èçäàíèÿ: " << year << "\n"
          << "ISBN: " << isbn << "\n"
-         << "Ð¡Ñ‚Ð°Ñ‚ÑƒÑ: " << (isAvailable ? "Ð”Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð°" : "Ð’Ñ‹Ð´Ð°Ð½Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŽ: " + borrowedBy) 
+         << "Ñòàòóñ: " << (isAvailable ? "Äîñòóïíà" : "Âûäàíà ïîëüçîâàòåëþ: " + borrowedBy) 
          << "\n\n";
 }
 

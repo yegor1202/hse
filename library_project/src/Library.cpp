@@ -8,21 +8,21 @@ Library::Library(const std::string& filename) : dataFile(filename) {
     try {
         loadFromFile();
     } catch (const std::exception& e) {
-        std::cerr << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ Ñ„Ð°Ð¹Ð»Ð°: " << e.what() << std::endl;
-        std::cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½Ð° Ð¿ÑƒÑÑ‚Ð°Ñ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ°.\n";
+        std::cerr << "Îøèáêà çàãðóçêè ôàéëà: " << e.what() << std::endl;
+        std::cout << "Ñîçäàíà ïóñòàÿ áèáëèîòåêà.\n";
     }
 }
 
 void Library::addBook(const Book& book) {
     if (findBookByISBN(book.getISBN()) != nullptr) {
-        throw std::runtime_error("ÐšÐ½Ð¸Ð³Ð° Ñ ISBN " + book.getISBN() + " ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚");
+        throw std::runtime_error("Êíèãà ñ ISBN " + book.getISBN() + " óæå ñóùåñòâóåò");
     }
     books.push_back(book);
 }
 
 void Library::addUser(const User& user) {
     if (findUserByName(user.getName()) != nullptr) {
-        throw std::runtime_error("ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ñ Ð¸Ð¼ÐµÐ½ÐµÐ¼ " + user.getName() + " ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚");
+        throw std::runtime_error("Ïîëüçîâàòåëü ñ èìåíåì " + user.getName() + " óæå ñóùåñòâóåò");
     }
     users.push_back(user);
 }
@@ -32,15 +32,15 @@ void Library::borrowBook(const std::string& userName, const std::string& isbn) {
     User* user = findUserByName(userName);
     
     if (book == nullptr) {
-        throw std::runtime_error("ÐšÐ½Ð¸Ð³Ð° Ñ ISBN " + isbn + " Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°");
+        throw std::runtime_error("Êíèãà ñ ISBN " + isbn + " íå íàéäåíà");
     }
     
     if (user == nullptr) {
-        throw std::runtime_error("ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ " + userName + " Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½");
+        throw std::runtime_error("Ïîëüçîâàòåëü " + userName + " íå íàéäåí");
     }
     
     if (!user->canBorrowMore()) {
-        throw std::runtime_error("ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð´Ð¾ÑÑ‚Ð¸Ð³ Ð»Ð¸Ð¼Ð¸Ñ‚Ð° ÐºÐ½Ð¸Ð³");
+        throw std::runtime_error("Ïîëüçîâàòåëü äîñòèã ëèìèòà êíèã");
     }
     
     book->borrowBook(userName);
@@ -51,11 +51,11 @@ void Library::returnBook(const std::string& isbn) {
     Book* book = findBookByISBN(isbn);
     
     if (book == nullptr) {
-        throw std::runtime_error("ÐšÐ½Ð¸Ð³Ð° Ñ ISBN " + isbn + " Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°");
+        throw std::runtime_error("Êíèãà ñ ISBN " + isbn + " íå íàéäåíà");
     }
     
     if (book->getIsAvailable()) {
-        throw std::runtime_error("ÐšÐ½Ð¸Ð³Ð° ÑƒÐ¶Ðµ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð° Ð´Ð»Ñ Ð²Ñ‹Ð´Ð°Ñ‡Ð¸");
+        throw std::runtime_error("Êíèãà óæå äîñòóïíà äëÿ âûäà÷è");
     }
     
     std::string userName = book->getBorrowedBy();
@@ -88,11 +88,11 @@ User* Library::findUserByName(const std::string& name) {
 
 void Library::displayAllBooks() const {
     if (books.empty()) {
-        std::cout << "Ð’ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐµ Ð½ÐµÑ‚ ÐºÐ½Ð¸Ð³.\n";
+        std::cout << "Â áèáëèîòåêå íåò êíèã.\n";
         return;
     }
     
-    std::cout << "=== ÐšÐÐ¢ÐÐ›ÐžÐ“ ÐšÐÐ˜Ð“ ===\n";
+    std::cout << "=== ÊÀÒÀËÎÃ ÊÍÈÃ ===\n";
     for (const auto& book : books) {
         book.displayInfo();
     }
@@ -100,11 +100,11 @@ void Library::displayAllBooks() const {
 
 void Library::displayAllUsers() const {
     if (users.empty()) {
-        std::cout << "Ð’ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐµ Ð½ÐµÑ‚ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹.\n";
+        std::cout << "Â áèáëèîòåêå íåò ïîëüçîâàòåëåé.\n";
         return;
     }
     
-    std::cout << "=== ÐŸÐžÐ›Ð¬Ð—ÐžÐ’ÐÐ¢Ð•Ð›Ð˜ ===\n";
+    std::cout << "=== ÏÎËÜÇÎÂÀÒÅËÈ ===\n";
     for (const auto& user : users) {
         user.displayProfile();
     }
@@ -195,7 +195,7 @@ void Library::parseUserFromFile(std::ifstream& file) {
 void Library::loadFromFile() {
     std::ifstream file(dataFile);
     if (!file.is_open()) {
-        std::cout << "Ð¤Ð°Ð¹Ð» Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½. Ð‘ÑƒÐ´ÐµÑ‚ ÑÐ¾Ð·Ð´Ð°Ð½ Ð½Ð¾Ð²Ñ‹Ð¹.\n";
+        std::cout << "Ôàéë äàííûõ íå íàéäåí. Áóäåò ñîçäàí íîâûé.\n";
         return;
     }
     
@@ -218,7 +218,7 @@ void Library::loadFromFile() {
 void Library::saveToFile() const {
     std::ofstream file(dataFile);
     if (!file.is_open()) {
-        throw std::runtime_error("ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð» Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸");
+        throw std::runtime_error("Íå óäàëîñü îòêðûòü ôàéë äëÿ çàïèñè");
     }
     
     for (const auto& book : books) {
@@ -232,5 +232,5 @@ void Library::saveToFile() const {
     }
     
     file.close();
-    std::cout << "Ð”Ð°Ð½Ð½Ñ‹Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹ Ð² Ñ„Ð°Ð¹Ð».\n";
+    std::cout << "Äàííûå óñïåøíî ñîõðàíåíû â ôàéë.\n";
 }

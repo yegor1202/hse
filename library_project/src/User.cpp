@@ -8,7 +8,7 @@ User::User(const string& name, const string& userId)
     : name(name), userId(userId), maxBooksAllowed(3) {
     
     if (name.empty() || userId.empty()) {
-        throw invalid_argument("РРјСЏ Рё ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹РјРё");
+        throw invalid_argument("Имя и ID пользователя не могут быть пустыми");
     }
 }
 
@@ -23,15 +23,15 @@ bool User::canBorrowMore() const {
 
 void User::addBook(const string& isbn) {
     if (isbn.empty()) {
-        throw invalid_argument("ISBN РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј");
+        throw invalid_argument("ISBN не может быть пустым");
     }
     
     if (!canBorrowMore()) {
-        throw runtime_error("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РґРѕСЃС‚РёРі Р»РёРјРёС‚Р° РєРЅРёРі");
+        throw runtime_error("Пользователь достиг лимита книг");
     }
     
     if (find(borrowedBooks.begin(), borrowedBooks.end(), isbn) != borrowedBooks.end()) {
-        throw runtime_error("РљРЅРёРіР° СЃ ISBN " + isbn + " СѓР¶Рµ РІР·СЏС‚Р° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј");
+        throw runtime_error("Книга с ISBN " + isbn + " уже взята пользователем");
     }
     
     borrowedBooks.push_back(isbn);
@@ -39,24 +39,24 @@ void User::addBook(const string& isbn) {
 
 void User::removeBook(const string& isbn) {
     if (isbn.empty()) {
-        throw invalid_argument("ISBN РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј");
+        throw invalid_argument("ISBN не может быть пустым");
     }
     
     auto it = find(borrowedBooks.begin(), borrowedBooks.end(), isbn);
     if (it == borrowedBooks.end()) {
-        throw runtime_error("РљРЅРёРіР° СЃ ISBN " + isbn + " РЅРµ РЅР°Р№РґРµРЅР° Сѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ");
+        throw runtime_error("Книга с ISBN " + isbn + " не найдена у пользователя");
     }
     
     borrowedBooks.erase(it);
 }
 
 void User::displayProfile() const {
-    cout << "РРјСЏ: " << name << "\n"
-         << "ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: " << userId << "\n"
-         << "Р’Р·СЏС‚Рѕ РєРЅРёРі: " << borrowedBooks.size() << " РёР· " << maxBooksAllowed << "\n";
+    cout << "Имя: " << name << "\n"
+         << "ID пользователя: " << userId << "\n"
+         << "Взято книг: " << borrowedBooks.size() << " из " << maxBooksAllowed << "\n";
     
     if (!borrowedBooks.empty()) {
-        cout << "Р’Р·СЏС‚С‹Рµ РєРЅРёРіРё (ISBN):\n";
+        cout << "Взятые книги (ISBN):\n";
         for (const auto& isbn : borrowedBooks) {
             cout << "  - " << isbn << "\n";
         }

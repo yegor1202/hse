@@ -1,19 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-project(Lab78)
+project(ProcessListLab)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCES
+add_executable(process_list
     main.cpp
     ListNode.cpp
     ProcessList.cpp
 )
 
-set(HEADERS
-    PCB.h
-    ListNode.h
-    ProcessList.h
-)
-
-include_directories(Execut)
+target_include_directories(process_list PRIVATE .)

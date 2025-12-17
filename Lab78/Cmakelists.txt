@@ -1,14 +1,19 @@
 cmake_minimum_required(VERSION 3.10)
-project()
+project(Lab78)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(Project
-    Execut/main.cpp
-    Execut/Lab78.cpp
-    Execut/ListNode.cpp
-    Execut/ProcessList.cpp
+set(SOURCES
+    main.cpp
+    ListNode.cpp
+    ProcessList.cpp
+)
+
+set(HEADERS
+    PCB.h
+    ListNode.h
+    ProcessList.h
 )
 
 include_directories(Execut)

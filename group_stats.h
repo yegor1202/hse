@@ -47,8 +47,8 @@ auto groupStats(T* arr, size_t n, KeyFunc keyFunc, ValueFunc valueFunc)
     }
     
     std::vector<GroupInfo<KeyType, T, ValueType>> result;
-    for (auto& pair : groups) {
-        auto& info = pair.second;
+    for (auto& i : groups) {
+        auto& info = i.second;
         info.avg = static_cast<double>(info.sum) / info.count;
         result.push_back(info);
     }
@@ -56,4 +56,4 @@ auto groupStats(T* arr, size_t n, KeyFunc keyFunc, ValueFunc valueFunc)
     return result;
 }
 
-#endif // GROUPSTATS_H
+#endif 

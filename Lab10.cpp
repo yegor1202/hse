@@ -31,7 +31,7 @@ int main() {
 
     strPipe.addStep("Add !!!", [](std::string s) { return s + "!!!"; });
     strPipe.addStep("Add prefix", [](std::string s) { return "Hello " + s; });
-    strPipe.addStep("Add suffix", [](std::string s) { return s + " :)"; });
+    strPipe.addStep("Add suffix", [](std::string s) { return s + " :3"; });
 
     std::string text = "World";
 

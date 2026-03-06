@@ -35,7 +35,7 @@ public:
     template<class F>
     void addStep(const std::string& name, F func) {
         if (name.empty()) {
-            throw std::invalid_argument("Step name cannot be empty");
+            throw std::invalid_argument("Name cannot be empty");
         }
 
         steps.push_back({name, func});

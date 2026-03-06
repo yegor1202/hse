@@ -1,0 +1,10 @@
+^C:\USERS\YAEGO\DESKTOP\VSCODE\LAB10\BUILD\CMAKEFILES\47D7F0CB555F98B282BB0A9560168086\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/yaego/Desktop/VSCode/Lab10 -BC:/Users/yaego/Desktop/VSCode/Lab10/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/yaego/Desktop/VSCode/Lab10/build/MyPipelineProject.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
